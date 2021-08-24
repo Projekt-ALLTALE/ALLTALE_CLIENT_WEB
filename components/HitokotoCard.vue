@@ -59,6 +59,7 @@ h1, h6, p {
   height: 320px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
   overflow: hidden;
 }
@@ -68,6 +69,7 @@ h1, h6, p {
   width: 100%;
   height: 100%;
   opacity: .8;
+  -o-object-fit: cover;
   object-fit: cover;
   background-size: cover;
   background-position: center;
@@ -87,6 +89,8 @@ h1, h6, p {
 }
 
 .date {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 20px;
   text-align: center;
