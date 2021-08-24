@@ -17,7 +17,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@/assets/css/alltale-web.css',
+    '@/assets/css/buefy.css'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -37,6 +40,10 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
+
+  buefy: {
+    css: false,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

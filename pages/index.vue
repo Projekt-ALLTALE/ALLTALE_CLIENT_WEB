@@ -1,53 +1,58 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <card
-        title="Free"
-        icon="github"
-      >
-        Open source on <a href="https://github.com/buefy/buefy">
-        GitHub
-      </a>
-      </card>
-
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">
-          Every
-        </b> component is responsive
-      </card>
-
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">
-        Vue.js
-      </a> and <a href="http://bulma.io/">
-        Bulma
-      </a>
-      </card>
-
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
+  <div class="home-page">
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <div class="tile is-child">
+              <HitokotoCard></HitokotoCard>
+            </div>
+            <div class="tile is-child">
+              <div class="tile-card"></div>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child">
+              <div class="tile-card" style="height: 100%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child">
+            <div class="tile-card"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <div class="tile is-child">
+          <div class="tile-card" style="height: 100%;"></div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import Card from '~/components/Card'
-
 export default {
   name: 'HomePage',
-
-  components: {
-    Card
+  mounted() {
+    const tile_cards = document.querySelectorAll('.tile-card')
+    let tile_cards_animation_delay = 0;
+    tile_cards.forEach(tileCard => {
+      tileCard.style.animationDuration = '1s';
+      tileCard.style.animationDelay = `${tile_cards_animation_delay}s`;
+      tile_cards_animation_delay += 0.25;
+    })
   }
 }
 </script>
+
+<style scoped>
+.home-page {
+  padding: 20px;
+}
+
+.tile-card {
+  opacity: 0;
+}
+</style>
