@@ -8,24 +8,24 @@
               <HitokotoCard></HitokotoCard>
             </div>
             <div class="tile is-child">
-              <div class="tile-card"></div>
+              <div class="tile-card">1</div>
             </div>
           </div>
           <div class="tile is-parent">
             <div class="tile is-child">
-              <div class="tile-card" style="height: 100%;"></div>
+              <div class="tile-card" style="height: 100%;">2</div>
             </div>
           </div>
         </div>
         <div class="tile is-parent">
           <div class="tile is-child">
-            <div class="tile-card"></div>
+            <div class="tile-card">3</div>
           </div>
         </div>
       </div>
       <div class="tile is-parent">
         <div class="tile is-child">
-          <div class="tile-card" style="height: 100%;"></div>
+          <div class="tile-card" style="height: 100%;">4</div>
         </div>
       </div>
     </div>

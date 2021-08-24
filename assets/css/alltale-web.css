@@ -311,7 +311,7 @@ p {
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px) saturate(180%);
-  overflow: hidden;
+  /*overflow: hidden;*/
   animation-name: fadeIn;
   animation-fill-mode: forwards;
 }

@@ -50,6 +50,7 @@ h1, h6, p {
 }
 
 .card-hitokoto {
+  position: relative;
   width: 100%;
   height: 320px;
   border-radius: 4px;
@@ -59,7 +60,7 @@ h1, h6, p {
 }
 
 .image {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   opacity: .8;
@@ -70,7 +71,7 @@ h1, h6, p {
 }
 
 .mask {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .4);
@@ -92,6 +93,7 @@ h1, h6, p {
 .date #year,
 .slogan-wrapper #slogan {
   color: rgba(255, 255, 255, 1);
+  font-family: sans-serif;
 }
 
 .date #day {
