@@ -1,6 +1,6 @@
 <template>
   <div class="tile-card card-hitokoto">
-    <div class="image"></div>
+    <div class="image" :style="{'background-image': `url('${imageUrl}')`}"></div>
     <div class="mask"></div>
     <div class="card-content">
       <div class="date">
@@ -20,7 +20,8 @@ export default {
   name: "HitokotoCard",
   data() {
     return {
-      hitokoto: null
+      hitokoto: null,
+      imageUrl: null,
     }
   },
   mounted() {
@@ -31,6 +32,9 @@ export default {
         rawAnimatedWords += `<span class="slogan-word fadeIn" style="animation-delay: ${this.rdm(0.5, 1)}s; animation-duration: ${this.rdm(0.5, 1.5)}s;">${word}</span>`
       })
       this.hitokoto = rawAnimatedWords
+    })
+    this.$axios.$get('https://api.no0a.cn/api/bing/0').then(data => {
+      this.imageUrl = data.bing.url || 'https://acg.toubiec.cn/random.php'
     })
   },
   methods: {
@@ -67,7 +71,6 @@ h1, h6, p {
   object-fit: cover;
   background-size: cover;
   background-position: center;
-  background-image: url("https://acg.toubiec.cn/random.php");
 }
 
 .mask {
