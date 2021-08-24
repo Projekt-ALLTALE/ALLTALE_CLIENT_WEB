@@ -85,6 +85,33 @@ p {
   padding: 0 1.5rem;
 }
 
+/* Navigation component: menu */
+
+.navbar .menu-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all .1s;
+}
+
+.navbar .menu-toggle:hover {
+  transform: scaleX(1.2);
+}
+
+.navbar .menu-toggle:active {
+  transform: scaleX(0.8);
+}
+
+
 /* Navigation component: title */
 
 .navbar .title {
@@ -314,4 +341,14 @@ p {
   /*overflow: hidden;*/
   animation-name: fadeIn;
   animation-fill-mode: forwards;
+}
+
+
+/*
+  Responsive
+*/
+@media screen and (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
 }
