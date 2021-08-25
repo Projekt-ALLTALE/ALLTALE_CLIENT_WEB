@@ -15,6 +15,9 @@ export default {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
       {rel: 'stylesheet', href: 'https://unicons.iconscout.com/release/v4.0.0/css/thinline.css'}
     ],
+    script: [
+      {src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'}
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

@@ -6,7 +6,7 @@
           {{ title }}
         </p>
       </header>
-      <div class="card-content">
+      <div class="card-container">
         <div class="content has-text-centered">
           <b-icon
             :icon="icon"

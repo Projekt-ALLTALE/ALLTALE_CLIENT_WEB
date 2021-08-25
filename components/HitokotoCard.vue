@@ -2,10 +2,10 @@
   <div class="tile-card card-hitokoto">
     <div class="image" :style="{'background-image': `url('${imageUrl}')`}"></div>
     <div class="mask"></div>
-    <div class="card-content">
-      <div class="date">
-        <h1 id="day">25</h1>
-        <h6 id="year">AUG 2021</h6>
+    <div class="card-container">
+      <div class="date" v-if="dateString">
+        <h1 id="day">{{ dateString[2] }}</h1>
+        <h6 id="year">{{ `${dateString[1]} ${dateString[3]}` }}</h6>
       </div>
       <div class="slogan-wrapper">
         <b-skeleton :active="!hitokoto" width="250px" height="26px"></b-skeleton>
@@ -22,10 +22,12 @@ export default {
     return {
       hitokoto: null,
       imageUrl: null,
+      dateString: null
     }
   },
   mounted() {
-    this.$axios.$get('https://v1.hitokoto.cn/?c=k').then(data => {
+    this.dateString = new Date().toDateString().toUpperCase().split(' ')
+    this.$axios.$get('https://v1.hitokoto.cn/?c=k&c=c').then(data => {
       const words = data.hitokoto.split('')
       let rawAnimatedWords = ''
       words.forEach(word => {
@@ -82,7 +84,7 @@ h1, h6, p {
   background-color: rgba(0, 0, 0, .4);
 }
 
-.card-content {
+.card-container {
   position: absolute;
   bottom: 0;
   padding: 20px;

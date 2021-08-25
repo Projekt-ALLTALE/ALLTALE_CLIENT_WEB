@@ -2,7 +2,9 @@
   <div class="wrapper">
     <div class="background"></div>
     <div class="mask blur"></div>
-    <div class="drawer" :class="{'open': drawerActive}">Drawer</div>
+    <div class="drawer" :class="{'open': drawerActive}">
+      Drawer
+    </div>
     <div class="main">
       <div class="navbar">
         <button class="menu-toggle" @click="drawerActive=!drawerActive">
@@ -13,9 +15,10 @@
           <span class="subtitle">University</span>
         </div>
         <div class="actions hide-on-mobile">
-          <nuxt-link class="btn" to="/none">示例</nuxt-link>
-          <nuxt-link class="btn" to="/none">示例</nuxt-link>
-          <nuxt-link class="btn" to="/none">示例</nuxt-link>
+          <nuxt-link v-for="button in navButtons" class="btn" :to="button.to" :key="button.key">{{
+              button.title
+            }}
+          </nuxt-link>
         </div>
       </div>
       <div class="content">
@@ -30,12 +33,18 @@ export default {
   data() {
     return {
       drawerActive: false,
+      navButtons: [
+        {title: '境地', to: {name: 'index'}},
+        {title: '行星', to: {name: 'planet'}},
+        {title: '熵寂', to: {name: 'heat-death'}},
+      ]
     }
   }
 }
 </script>
 
 <style scoped>
+@import "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css";
 @import "https://unicons.iconscout.com/release/v4.0.0/css/thinline.css";
 
 .drawer {
@@ -52,5 +61,11 @@ export default {
 
 .drawer.open {
   left: 0;
+}
+</style>
+
+<style>
+.foot {
+  display: none;
 }
 </style>
