@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import {io} from "socket.io-client";
+
 export default {
   data() {
     return {
@@ -39,6 +41,12 @@ export default {
         {title: '熵寂', to: {name: 'heat-death'}},
       ]
     }
+  },
+  mounted() {
+    const socket = io('127.0.0.1:21611', {path: '/alltale-core'})
+    socket.on('user:update-info', ev => {
+      this.$store.commit('identity/update', ev);
+    })
   }
 }
 </script>

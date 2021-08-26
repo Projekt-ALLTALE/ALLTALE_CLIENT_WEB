@@ -2,14 +2,19 @@
   <div class="tile-card card-identity">
     <div class="identity">
       <h3>当前会话身份</h3>
-      <p>Phantom#5412</p>
+      <p>{{ identity.info.id || '等待分配' }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "IdentitySettingCard"
+  name: "IdentitySettingCard",
+  computed: {
+    identity() {
+      return this.$store.state.identity
+    }
+  }
 }
 </script>
 
