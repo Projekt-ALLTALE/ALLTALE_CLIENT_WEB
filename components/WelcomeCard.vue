@@ -10,18 +10,22 @@
       </p>
       <h1 class="card-title">
         <i class="uit uit-polygon"></i>
-        行星
+        暂无文案
       </h1>
-      <p class="card-content">
-        阿尔泰拉会不定期投放一批“行星”，可在有限的窗口期内登陆行星，与同行者建立通讯...
-      </p>
-      <h1 class="card-title">
-        <i class="uit uit-polygon"></i>
-        熵寂
-      </h1>
-      <p class="card-content">
-        宇宙的终点是熵寂，万物湮灭。这个板块类似一个留言板，但是在这里发布的任何内容都会在某一时刻被“黑洞吞噬”，或许又在将来某一时刻，黑洞塌缩，内容得以短暂的重现...
-      </p>
+      <!--      <h1 class="card-title">-->
+      <!--        <i class="uit uit-polygon"></i>-->
+      <!--        行星-->
+      <!--      </h1>-->
+      <!--      <p class="card-content">-->
+      <!--        阿尔泰拉会不定期投放一批“行星”，可在有限的窗口期内登陆行星，与同行者建立通讯...-->
+      <!--      </p>-->
+      <!--      <h1 class="card-title">-->
+      <!--        <i class="uit uit-polygon"></i>-->
+      <!--        熵寂-->
+      <!--      </h1>-->
+      <!--      <p class="card-content">-->
+      <!--        宇宙的终点是熵寂，万物湮灭。这个板块类似一个留言板，但是在这里发布的任何内容都会在某一时刻被“黑洞吞噬”，或许又在将来某一时刻，黑洞塌缩，内容得以短暂的重现...-->
+      <!--      </p>-->
     </div>
   </div>
 </template>

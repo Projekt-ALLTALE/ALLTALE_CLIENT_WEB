@@ -20,6 +20,9 @@
             }}
           </nuxt-link>
         </div>
+        <div class="server-status">
+          <div class="dot" :class="{'offline': !serverConnected}"></div>
+        </div>
       </div>
       <div class="content">
         <Nuxt/>
@@ -32,6 +35,11 @@
 import {io} from "socket.io-client";
 
 export default {
+  computed: {
+    serverConnected() {
+      return this.$store.state.websocket.status.connected;
+    }
+  },
   data() {
     return {
       drawerActive: false,
@@ -43,9 +51,25 @@ export default {
     }
   },
   mounted() {
-    const socket = io('127.0.0.1:21611', {path: '/alltale-core'})
+    const socket = io('192.168.59.1:21611', {
+      path: '/alltale-core',
+      withCredentials: true
+    })
+    socket.on('connect', ev => {
+      this.$store.commit('websocket/updateStatus', true)
+    });
+
+    socket.on('session:update-cookie', cookie => document.cookie = cookie);
+    socket.on('session:conflict', () => {
+      socket.disconnect()
+    })
+
     socket.on('user:update-info', ev => {
       this.$store.commit('identity/update', ev);
+    })
+
+    socket.on('disconnect', ev => {
+      this.$store.commit('websocket/updateStatus', false)
     })
   }
 }
@@ -70,10 +94,24 @@ export default {
 .drawer.open {
   left: 0;
 }
-</style>
 
-<style>
-.foot {
-  display: none;
+.server-status {
+  display: flex;
+  align-items: center;
+  min-width: 35px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.server-status .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #48c78e;
+}
+
+.server-status .dot.offline {
+  background: #f14668;
 }
 </style>

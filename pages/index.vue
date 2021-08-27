@@ -20,7 +20,9 @@
       </div>
       <div class="tile is-parent">
         <div class="tile is-child">
-          <div class="tile-card" style="height: 100%;">4</div>
+          <div class="tile-card" style="min-height: 100%;">
+            <InstantMessage></InstantMessage>
+          </div>
         </div>
       </div>
     </div>
