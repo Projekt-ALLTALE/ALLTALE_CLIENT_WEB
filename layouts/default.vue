@@ -51,7 +51,7 @@ export default {
     }
   },
   mounted() {
-    const socket = io('192.168.59.1:21611', {
+    const socket = io(this.$config.alltale_server, {
       path: '/alltale-core',
       withCredentials: true
     })
