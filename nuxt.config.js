@@ -62,6 +62,11 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
+  server: {
+    port: 29998,
+    host: '0.0.0.0'
+  },
+
   publicRuntimeConfig: {
     alltale_server: process.env.ALLTALE_SERVER || '192.168.59.1:21611'
   }
