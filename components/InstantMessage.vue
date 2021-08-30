@@ -58,7 +58,7 @@ export default {
     }
   },
   watch: {
-    globalMessage() {
+    lobbyMessage() {
       this.$nextTick(() => {
         this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight)
       })
