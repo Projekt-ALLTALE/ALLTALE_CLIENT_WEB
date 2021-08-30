@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# CSS file for fotmatting
+assets/css/format-pad.css
