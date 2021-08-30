@@ -6,7 +6,7 @@
     <div class="at-im-list-wrapper" ref="im-wrapper">
       <ul class="at-im-list">
         <li class="at-im-message"
-            :class="{'info': message.info, 'warn': message.warn, 'myself': message.sender === identity.id}"
+            :class="{'info': message.info, 'warn': message.warn, 'admin': message.admin, 'myself': message.sender === identity.id}"
             v-for="message in lobbyMessage"
             :key="message.key">
           <div class="sender">
@@ -184,12 +184,10 @@ h1, p {
 }
 
 .at-im-message.info .message,
-.at-im-message.warn .message {
-  margin-left: 4px;
-}
-
-.at-im-message.info .message {
+.at-im-message.warn .message,
+.at-im-message.admin .message {
   opacity: 1;
+  margin-left: 4px;
 }
 
 .at-im-message.warn .sender h3,
@@ -197,8 +195,9 @@ h1, p {
   color: #f14668;
 }
 
-.at-im-message.warn .message {
-  opacity: 1;
+.at-im-message.admin .sender h3,
+.at-im-message.admin .message {
+  color: #ff9900;
 }
 
 
