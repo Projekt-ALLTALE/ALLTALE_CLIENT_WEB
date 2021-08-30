@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import {io} from "socket.io-client";
 
 export default {
@@ -51,24 +52,32 @@ export default {
     }
   },
   mounted() {
-    const socket = io(this.$config.alltale_server, {
+    Vue.prototype.socket = io(this.$config.alltale_server, {
       path: '/alltale-core',
       withCredentials: true
     })
-    socket.on('connect', ev => {
+    // const socket = io(this.$config.alltale_server, {
+    //   path: '/alltale-core',
+    //   withCredentials: true
+    // })
+    this.socket.on('connect', ev => {
       this.$store.commit('websocket/updateStatus', true)
     });
 
-    socket.on('session:update-cookie', cookie => document.cookie = cookie);
-    socket.on('session:conflict', () => {
-      socket.disconnect()
+    this.socket.on('session:update-cookie', cookie => document.cookie = cookie);
+    this.socket.on('session:conflict', () => {
+      this.socket.disconnect()
     })
 
-    socket.on('user:update-info', ev => {
+    this.socket.on('user:update-info', ev => {
       this.$store.commit('identity/update', ev);
     })
 
-    socket.on('disconnect', ev => {
+    this.socket.on('message:global', message => {
+      this.$store.commit('im/putGlobalMessage', message)
+    })
+
+    this.socket.on('disconnect', ev => {
       this.$store.commit('websocket/updateStatus', false)
     })
   }

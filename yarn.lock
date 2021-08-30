@@ -903,6 +903,18 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@better-scroll/core@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.nlark.com/@better-scroll/core/download/@better-scroll/core-2.4.2.tgz?cache=0&sync_timestamp=1627914727436&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fcore%2Fdownload%2F%40better-scroll%2Fcore-2.4.2.tgz#e69470012d79923a18034c3e4931720fbb06eae5"
+  integrity sha1-5pRwAS15kjoYA0w+STFyD7sG6uU=
+  dependencies:
+    "@better-scroll/shared-utils" "^2.4.2"
+
+"@better-scroll/shared-utils@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.nlark.com/@better-scroll/shared-utils/download/@better-scroll/shared-utils-2.4.2.tgz?cache=0&sync_timestamp=1627914725638&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fshared-utils%2Fdownload%2F%40better-scroll%2Fshared-utils-2.4.2.tgz#1ac5c97495727093a22a8009560795dd5e3c18da"
+  integrity sha1-GsXJdJVycJOiKoAJVgeV3V48GNo=
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.npm.taobao.org/@csstools/convert-colors/download/@csstools/convert-colors-1.4.0.tgz"

@@ -13,16 +13,19 @@
           </div>
           <div class="tile is-parent">
             <div class="tile is-child">
-              <WelcomeCard></WelcomeCard>
+              <div class="tile-card" style="height: fit-content">
+                <InstantMessage></InstantMessage>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="tile is-parent">
         <div class="tile is-child">
-          <div class="tile-card" style="min-height: 100%;">
-            <InstantMessage></InstantMessage>
-          </div>
+          <WelcomeCard></WelcomeCard>
+          <!--          <div class="tile-card" style="height: fit-content">-->
+          <!--            <InstantMessage></InstantMessage>-->
+          <!--          </div>-->
         </div>
       </div>
     </div>
