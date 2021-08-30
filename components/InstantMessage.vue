@@ -51,15 +51,12 @@ export default {
     },
     parseTimeToShow(timestamp) {
       let datetime = new Date(timestamp);
-      return `${datetime.getHours()}:${datetime.getMinutes()}`;
+      return `${datetime.getHours().toString().padStart(2, '0')}:${datetime.getMinutes().toString().padStart(2, '0')}`;
     }
   },
   watch: {
     globalMessage() {
       this.$nextTick(() => {
-        // if (this.$refs["im-list"].childElementCount > 0) this.$refs["im-list"].lastChild.scrollIntoView({
-        //   behavior: 'smooth'
-        // });
         this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight)
       })
     }
