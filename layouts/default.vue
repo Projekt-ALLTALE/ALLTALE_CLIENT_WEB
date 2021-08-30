@@ -12,7 +12,7 @@
         </button>
         <div class="title">
           ALLTALE
-          <span class="subtitle">University</span>
+          <span class="subtitle">Universe</span>
         </div>
         <div class="actions hide-on-mobile">
           <nuxt-link v-for="button in navButtons" class="btn" :to="button.to" :key="button.key">{{
