@@ -21,7 +21,7 @@ module.exports = {
       repo: 'https://github.com/Projekt-ALLTALE/ALLTALE_CLIENT_WEB',
       path: '~/Project/ALLTALE_CLIENT_DEV',
       'post-setup': 'yarn install && yarn build',
-      'post-deploy': 'pm2 reload ecosystem.config.js --env production'
+      'post-deploy': 'yarn install && yarn build && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
