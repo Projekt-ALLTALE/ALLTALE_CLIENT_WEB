@@ -1,13 +1,13 @@
 <template>
   <div class="at-im">
     <div class="at-im-status">
-      <h1>根频道</h1>
+      <h1>根频道<span class="at-im-online">在线人数：{{ online || 'N/A' }}</span></h1>
     </div>
     <div class="at-im-list-wrapper" ref="im-wrapper">
       <ul class="at-im-list">
         <li class="at-im-message"
             :class="{'info': message.info, 'warn': message.warn, 'myself': message.sender === identity.id}"
-            v-for="message in globalMessage"
+            v-for="message in lobbyMessage"
             :key="message.key">
           <div class="sender">
             <h3><span class="time">[{{ parseTimeToShow(message.time) }}] </span>{{ message.sender }}</h3>
@@ -31,8 +31,11 @@
 export default {
   name: "InstantMessage",
   computed: {
-    globalMessage() {
-      return this.$store.state.im.message.global
+    lobbyMessage() {
+      return this.$store.state.im.message.lobby
+    },
+    online() {
+      return this.$store.state.im.server.online
     },
     identity() {
       return this.$store.state.identity.info
@@ -99,7 +102,6 @@ h1, p {
 }
 
 .at-im-status {
-  flex: 1;
   padding: 20px;
   color: #fff;
 }
@@ -109,9 +111,16 @@ h1, p {
   font-weight: 100;
 }
 
+.at-im-status h1 .at-im-online {
+  opacity: .6;
+  display: block;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
 .at-im-list-wrapper {
   width: 100%;
-  height: 528px;
+  height: 509px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }

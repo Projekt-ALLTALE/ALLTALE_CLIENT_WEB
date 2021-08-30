@@ -55,31 +55,36 @@ export default {
     Vue.prototype.socket = io(this.$config.alltale_server, {
       path: '/alltale-core',
       withCredentials: true
-    })
-    // const socket = io(this.$config.alltale_server, {
-    //   path: '/alltale-core',
-    //   withCredentials: true
-    // })
-    this.socket.on('connect', ev => {
-      this.$store.commit('websocket/updateStatus', true)
     });
 
+    /* Connection status */
+    this.socket.on('connect', ev => {
+      this.$store.commit('websocket/updateStatus', true);
+    });
+    this.socket.on('disconnect', ev => {
+      this.$store.commit('websocket/updateStatus', false);
+    });
+
+    /* Broadcasts */
+    this.socket.on('broadcast:online', dat => {
+      this.$store.commit('im/updateOnline', dat);
+    });
+
+    /* Session */
     this.socket.on('session:update-cookie', cookie => document.cookie = cookie);
     this.socket.on('session:conflict', () => {
-      this.socket.disconnect()
-    })
+      this.socket.disconnect();
+    });
 
+    /* User / Identity */
     this.socket.on('user:update-info', ev => {
       this.$store.commit('identity/update', ev);
-    })
+    });
 
-    this.socket.on('message:global', message => {
-      this.$store.commit('im/putGlobalMessage', message)
-    })
-
-    this.socket.on('disconnect', ev => {
-      this.$store.commit('websocket/updateStatus', false)
-    })
+    /* Messaging */
+    this.socket.on('message:lobby', message => {
+      this.$store.commit('im/putLobbyMessage', message);
+    });
   }
 }
 </script>

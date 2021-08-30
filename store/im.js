@@ -1,11 +1,17 @@
 export const state = () => ({
+  server: {
+    online: null,
+  },
   message: {
-    global: [],
+    lobby: [],
   }
 });
 
 export const mutations = {
-  putGlobalMessage(state, messageObj) {
-    state.message.global.push(JSON.parse(messageObj))
+  updateOnline(state, onlineObj) {
+    state.server.online = JSON.parse(onlineObj).online;
+  },
+  putLobbyMessage(state, messageObj) {
+    state.message.lobby.push(JSON.parse(messageObj));
   }
 }
