@@ -4,7 +4,42 @@
     <div class="mask blur"></div>
     <div class="drawer acrylic" theme="dark" :class="{'open': drawerActive}">
       <div class="drawer-mask" ref="drawer-close-area"></div>
-      Drawer
+      <div class="option-list">
+        <div class="option">
+          <span><b-icon
+            class="option-icon"
+            style="margin-right: 1rem;"
+            icon="list-status"
+            size="is-small">
+          </b-icon>服务器状态</span>
+        </div>
+        <div class="option">
+          <span><b-icon
+            class="option-icon"
+            style="margin-right: 1rem;"
+            icon="playlist-music"
+            size="is-small">
+          </b-icon>媒体</span>
+          <b-icon
+            class="option-icon"
+            icon="chevron-right"
+            size="is-small">
+          </b-icon>
+        </div>
+        <div class="option">
+          <span><b-icon
+            class="option-icon"
+            style="margin-right: 1rem;"
+            icon="account-supervisor"
+            size="is-small">
+          </b-icon>在线</span>
+          <b-icon
+            class="option-icon"
+            icon="chevron-right"
+            size="is-small">
+          </b-icon>
+        </div>
+      </div>
     </div>
     <div class="main">
       <div class="navbar acrylic">
@@ -131,6 +166,32 @@ export default {
   height: calc(100vh - 64px);
   background-color: rgba(0, 0, 0, .6);
   animation: drawerMaskIn var(--animation);
+}
+
+.option-list {
+  width: 100%;
+  color: rgba(255, 255, 255, .8);
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  height: 50px;
+  background-color: rgba(0, 0, 0, .04);
+  backdrop-filter: blur(50px);
+  transition: background-color var(--animation);
+  cursor: pointer;
+  /*border-bottom: 1px solid rgba(255, 255, 255, .1);*/
+}
+
+/*.option:last-child {*/
+/*  border-bottom: none;*/
+/*}*/
+
+.option:hover {
+  background-color: rgba(0, 0, 0, .2);
 }
 
 .server-status {
