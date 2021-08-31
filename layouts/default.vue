@@ -44,7 +44,7 @@
     <div class="main">
       <div class="navbar acrylic">
         <button class="menu-toggle" @click="drawerActive=!drawerActive">
-          <i class="uit uit-subject"></i>
+          <i class="uit" :class="drawerActive ? 'uit-left-indent' : 'uit-subject'"></i>
         </button>
         <div class="title">
           ALLTALE
