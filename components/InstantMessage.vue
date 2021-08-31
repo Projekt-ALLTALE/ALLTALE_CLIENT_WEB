@@ -179,6 +179,7 @@ h1, p {
 .at-im-message.info,
 .at-im-message.warn {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   opacity: 1;
 }
