@@ -3,6 +3,7 @@
     <div class="background"></div>
     <div class="mask blur"></div>
     <div class="drawer acrylic" theme="dark" :class="{'open': drawerActive}">
+      <div class="drawer-mask" ref="drawer-close-area"></div>
       Drawer
     </div>
     <div class="main">
@@ -53,6 +54,9 @@ export default {
   },
   mounted() {
     this.$refs['page-wrapper'].setAttribute('theme', 'light');
+    this.$refs['drawer-close-area'].onclick = () => {
+      this.drawerActive = false;
+    }
 
     /* Websocket */
     Vue.prototype.socket = io(this.$config.alltale_server, {
@@ -96,6 +100,15 @@ export default {
 @import "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css";
 @import "https://unicons.iconscout.com/release/v4.0.0/css/thinline.css";
 
+@keyframes drawerMaskIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .drawer {
   z-index: 999;
   position: fixed;
@@ -103,11 +116,21 @@ export default {
   bottom: 0;
   width: 300px;
   height: calc(100% - 64px);
+  backdrop-filter: blur(55px);
   transition: left var(--animation) ease-out;
 }
 
 .drawer.open {
   left: 0;
+}
+
+.drawer.open .drawer-mask {
+  position: fixed;
+  margin-left: 300px;
+  width: calc(100vw + 300px);
+  height: calc(100vh - 64px);
+  background-color: rgba(0, 0, 0, .6);
+  animation: drawerMaskIn var(--animation);
 }
 
 .server-status {
