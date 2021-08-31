@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" ref="page-wrapper">
     <div class="background"></div>
     <div class="mask blur"></div>
-    <div class="drawer" :class="{'open': drawerActive}">
+    <div class="drawer acrylic" theme="dark" :class="{'open': drawerActive}">
       Drawer
     </div>
     <div class="main">
-      <div class="navbar">
+      <div class="navbar acrylic">
         <button class="menu-toggle" @click="drawerActive=!drawerActive">
           <i class="uit uit-subject"></i>
         </button>
@@ -52,6 +52,9 @@ export default {
     }
   },
   mounted() {
+    this.$refs['page-wrapper'].setAttribute('theme', 'light');
+
+    /* Websocket */
     Vue.prototype.socket = io(this.$config.alltale_server, {
       path: '/alltale-core',
       withCredentials: true
@@ -100,8 +103,6 @@ export default {
   bottom: 0;
   width: 300px;
   height: calc(100% - 64px);
-  background: rgba(0, 0, 0, .8);
-  backdrop-filter: blur(50px) saturate(180%);
   transition: left var(--animation) ease-out;
 }
 

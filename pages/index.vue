@@ -13,7 +13,7 @@
           </div>
           <div class="tile is-parent">
             <div class="tile is-child">
-              <div class="tile-card" style="height: fit-content">
+              <div class="tile-card acrylic" style="height: fit-content">
                 <InstantMessage></InstantMessage>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="tile-card">
+  <div class="tile-card acrylic">
     <div class="card-container">
       <h1 class="card-title">
         <i class="uit uit-polygon"></i>

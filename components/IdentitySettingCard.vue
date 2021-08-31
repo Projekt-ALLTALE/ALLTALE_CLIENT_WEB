@@ -1,5 +1,5 @@
 <template>
-  <div class="tile-card card-identity">
+  <div class="tile-card acrylic card-identity">
     <div class="identity">
       <h3>当前会话身份</h3>
       <p>{{ identity.info.id || '等待分配' }}</p>

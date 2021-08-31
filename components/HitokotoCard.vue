@@ -1,5 +1,5 @@
 <template>
-  <div class="tile-card card-hitokoto">
+  <div class="tile-card acrylic card-hitokoto">
     <div class="image" :style="{'background-image': `url('${imageUrl}')`}"></div>
     <div class="mask"></div>
     <div class="card-container">
