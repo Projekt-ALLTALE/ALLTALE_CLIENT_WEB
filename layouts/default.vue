@@ -1,17 +1,21 @@
+<!--suppress HtmlUnknownAttribute -->
 <template>
-  <div class="wrapper" ref="page-wrapper">
+  <div class="wrapper" ref="page-wrapper" :theme="theme">
     <div class="background"></div>
     <div class="mask blur"></div>
     <div class="drawer acrylic" theme="dark" :class="{'open': drawerActive}">
       <div class="drawer-mask" ref="drawer-close-area"></div>
       <div class="option-list">
-        <div class="option">
+        <div class="option tip">
+          <span>这个玩意仍在开发，仅供体验</span>
+        </div>
+        <div class="option" @click="theme = (theme === 'light') ? 'dark' : 'light'">
           <span><b-icon
             class="option-icon"
             style="margin-right: 1rem;"
-            icon="list-status"
+            icon="theme-light-dark"
             size="is-small">
-          </b-icon>服务器状态</span>
+          </b-icon>切换主题</span>
         </div>
         <div class="option">
           <span><b-icon
@@ -80,6 +84,7 @@ export default {
   data() {
     return {
       drawerActive: false,
+      theme: 'light',
       navButtons: [
         {title: '境地', to: {name: 'index'}},
         {title: '行星', to: {name: 'planet'}},
@@ -88,7 +93,6 @@ export default {
     }
   },
   mounted() {
-    this.$refs['page-wrapper'].setAttribute('theme', 'light');
     this.$refs['drawer-close-area'].onclick = () => {
       this.drawerActive = false;
     }
@@ -171,6 +175,7 @@ export default {
 .option-list {
   width: 100%;
   color: rgba(255, 255, 255, .8);
+  font-family: sans-serif;
 }
 
 .option {
@@ -179,6 +184,7 @@ export default {
   align-items: center;
   padding: 0 1.5rem;
   height: 50px;
+  font-size: 16px;
   background-color: rgba(0, 0, 0, .04);
   backdrop-filter: blur(50px);
   transition: background-color var(--animation);
@@ -192,6 +198,14 @@ export default {
 
 .option:hover {
   background-color: rgba(0, 0, 0, .2);
+}
+
+.option.tip {
+  height: 30px;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: rgba(241, 70, 104, .4);
 }
 
 .server-status {
