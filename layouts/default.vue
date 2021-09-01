@@ -41,6 +41,9 @@ export default {
   computed: {
     serverConnected() {
       return this.$store.state.websocket.status.connected;
+    },
+    onlineMembers() {
+      return this.$store.state.im.server.members;
     }
   },
   data() {
@@ -76,16 +79,7 @@ export default {
         {
           title: '在线',
           icon: 'account-supervisor',
-          children: [
-            {
-              title: 'Admin',
-              icon: 'account'
-            },
-            {
-              title: 'Anonymous',
-              icon: 'account'
-            },
-          ]
+          children: []
         },
       ]
     }
@@ -112,6 +106,7 @@ export default {
     /* Broadcasts */
     this.socket.on('broadcast:online', dat => {
       this.$store.commit('im/updateOnline', dat);
+      this.$store.commit('im/updateMembers', dat);
     });
 
     /* Session */
@@ -129,6 +124,17 @@ export default {
     this.socket.on('message:lobby', message => {
       this.$store.commit('im/putLobbyMessage', message);
     });
+  },
+  watch: {
+    onlineMembers(members) {
+      this.drawerOptions[3].children = [];
+      for (let member in members) {
+        this.drawerOptions[3].children.push({
+          title: members[member].id,
+          icon: 'account'
+        })
+      }
+    }
   }
 }
 </script>
