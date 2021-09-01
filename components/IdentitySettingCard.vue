@@ -1,5 +1,5 @@
 <template>
-  <div class="tile-card acrylic card-identity">
+  <div class="tile-card acrylic card-identity" :class="{'disconnect': !connected}">
     <div class="identity">
       <h3>当前会话身份</h3>
       <p>{{ identity.info.id || '等待分配' }}</p>
@@ -13,6 +13,9 @@ export default {
   computed: {
     identity() {
       return this.$store.state.identity
+    },
+    connected() {
+      return this.$store.state.websocket.status.connected
     }
   }
 }
@@ -38,6 +41,10 @@ h3, p {
     var(--line-color) 50%, var(--line-color) 75%, transparent 75%, transparent
   );
   background-size: 15px 15px;
+}
+
+.card-identity.disconnect {
+  --line-color: rgba(241, 70, 104, .2);
 }
 
 .identity h3 {
