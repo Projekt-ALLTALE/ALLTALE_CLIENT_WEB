@@ -53,8 +53,11 @@ export default {
       ],
       drawerOptions: [
         {
-          title: '项目处于开发中，这是预览站点',
-          isTip: true
+          title: '项目处于开发中，前往GitHub →',
+          isTip: true,
+          callback: () => {
+            window.open('https://github.com/Projekt-ALLTALE/ALLTALE_CLIENT_WEB')
+          }
         },
         {
           title: '切换主题',

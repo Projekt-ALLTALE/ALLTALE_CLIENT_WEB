@@ -2,7 +2,8 @@
 <template>
   <div class="option-list">
     <div class="option-wrapper" v-for="(option, index) in drawerOptions" :key="option.key">
-      <div v-if="option.isTip" class="option-wrapper">
+      <div v-if="option.isTip" @click="(typeof option.callback === 'function') ? option.callback() : ()=>{}"
+           class="option-wrapper">
         <div class="option tip">
           <span>{{ option.title }}</span>
         </div>
