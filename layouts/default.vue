@@ -1,49 +1,11 @@
 <!--suppress HtmlUnknownAttribute -->
 <template>
-  <div class="wrapper" ref="page-wrapper" :theme="theme">
+  <div class="wrapper" ref="page-wrapper" :theme="'light'">
     <div class="background"></div>
     <div class="mask blur"></div>
     <div class="drawer acrylic" theme="dark" :class="{'open': drawerActive}">
       <div class="drawer-mask" ref="drawer-close-area"></div>
-      <div class="option-list">
-        <div class="option tip">
-          <span>这个玩意仍在开发，仅供体验</span>
-        </div>
-        <div class="option" @click="theme = (theme === 'light') ? 'dark' : 'light'">
-          <span><b-icon
-            class="option-icon"
-            style="margin-right: 1rem;"
-            icon="theme-light-dark"
-            size="is-small">
-          </b-icon>切换主题</span>
-        </div>
-        <div class="option">
-          <span><b-icon
-            class="option-icon"
-            style="margin-right: 1rem;"
-            icon="playlist-music"
-            size="is-small">
-          </b-icon>媒体</span>
-          <b-icon
-            class="option-icon"
-            icon="chevron-right"
-            size="is-small">
-          </b-icon>
-        </div>
-        <div class="option">
-          <span><b-icon
-            class="option-icon"
-            style="margin-right: 1rem;"
-            icon="account-supervisor"
-            size="is-small">
-          </b-icon>在线</span>
-          <b-icon
-            class="option-icon"
-            icon="chevron-right"
-            size="is-small">
-          </b-icon>
-        </div>
-      </div>
+      <DrawerOption :drawer-options="drawerOptions"/>
     </div>
     <div class="main">
       <div class="navbar acrylic">
@@ -84,11 +46,44 @@ export default {
   data() {
     return {
       drawerActive: false,
-      theme: 'light',
       navButtons: [
         {title: '境地', to: {name: 'index'}},
         {title: '行星', to: {name: 'planet'}},
         {title: '熵寂', to: {name: 'heat-death'}},
+      ],
+      drawerOptions: [
+        {
+          title: '项目处于开发中，这是预览站点',
+          isTip: true
+        },
+        {
+          title: '切换主题',
+          icon: 'theme-light-dark'
+        },
+        {
+          title: '媒体',
+          icon: 'playlist-music',
+          children: [
+            {
+              title: '子项目',
+              icon: 'arrow-right'
+            },
+          ]
+        },
+        {
+          title: '在线',
+          icon: 'account-supervisor',
+          children: [
+            {
+              title: 'Admin',
+              icon: 'account'
+            },
+            {
+              title: 'Anonymous',
+              icon: 'account'
+            },
+          ]
+        },
       ]
     }
   },
@@ -157,6 +152,7 @@ export default {
   height: calc(100% - 64px);
   backdrop-filter: blur(55px);
   transition: left var(--animation) ease-out;
+  will-change: left;
 }
 
 .drawer.open {
@@ -170,42 +166,6 @@ export default {
   height: calc(100vh - 64px);
   background-color: rgba(0, 0, 0, .6);
   animation: drawerMaskIn var(--animation);
-}
-
-.option-list {
-  width: 100%;
-  color: rgba(255, 255, 255, .8);
-  font-family: sans-serif;
-}
-
-.option {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1.5rem;
-  height: 50px;
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, .04);
-  backdrop-filter: blur(50px);
-  transition: background-color var(--animation);
-  cursor: pointer;
-  /*border-bottom: 1px solid rgba(255, 255, 255, .1);*/
-}
-
-/*.option:last-child {*/
-/*  border-bottom: none;*/
-/*}*/
-
-.option:hover {
-  background-color: rgba(0, 0, 0, .2);
-}
-
-.option.tip {
-  height: 30px;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: bold;
-  background-color: rgba(241, 70, 104, .4);
 }
 
 .server-status {
