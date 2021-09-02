@@ -8,7 +8,7 @@
           <span>{{ option.title }}</span>
         </div>
       </div>
-      <div v-else class="option expanded"
+      <div v-else class="option"
            @click="!option.callback
            ? toggleDrawerChild(index, option.children ? (option.children.length || 0) : 0)
            : option.callback()"
@@ -29,7 +29,7 @@
         />
       </div>
       <div class="option-list-child" v-if="option.children" :ref="`child${index}`"
-           :style="{height: `${(option.children.length||0) * 50}px`}">
+      >
         <div class="option child" v-for="(child, childIndex) in option.children">
           <span><b-icon
             class="option-icon"
@@ -64,7 +64,7 @@ export default {
       const childRef = this.$refs[`child${index}`] || null;
       if (childRef) if (childRef[0]) {
         const elem = childRef[0];
-        elem.style.height = (Number.parseInt(elem.style.height.replace('px', '')) !== 0)
+        elem.style.height = !ref[0].classList.contains('expanded')
           ? 0
           : `${childCount * 50}px`;
       }
@@ -128,9 +128,10 @@ export default {
   background: transparent;
   font-family: sans-serif;
   color: rgba(255, 255, 255, .8);
+  box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, .8);
   overflow: hidden;
   will-change: height;
-  transition: all var(--animation) ease-in-out;
+  transition: all calc(var(--animation) / 2) ease-in-out;
 }
 
 .option.child {
