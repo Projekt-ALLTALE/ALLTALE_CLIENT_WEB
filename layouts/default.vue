@@ -22,8 +22,24 @@
             }}
           </nuxt-link>
         </div>
-        <div class="server-status">
+        <div class="server-status" @click="toggleInfo">
           <div class="dot" :class="{'offline': !serverConnected}"></div>
+          <div class="server-info" :class="{visible: serverInfoVisible}">
+            <div>
+              <div>
+                <b-icon icon="server-network" size="is-small"/>
+                服务器: <code>{{ serverInfo.name || 'N/A' }}</code>
+              </div>
+              <div>
+                <b-icon icon="earth" size="is-small"/>
+                区域: <code>{{ serverInfo.region || 'N/A' }}</code>
+              </div>
+              <div>
+                <b-icon icon="beta" size="is-small"/>
+                版本: <code>{{ serverInfo.version || 'N/A' }}</code>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="content">
@@ -44,11 +60,15 @@ export default {
     },
     onlineMembers() {
       return this.$store.state.im.server.members;
+    },
+    serverInfo() {
+      return this.$store.state.websocket.status.serverInfo;
     }
   },
   data() {
     return {
       drawerActive: false,
+      serverInfoVisible: false,
       navButtons: [
         {title: '境地', to: {name: 'index'}},
         {title: '行星', to: {name: 'planet'}},
@@ -110,6 +130,7 @@ export default {
     });
 
     /* Session */
+    this.socket.on('session:server-info', info => this.$store.commit('websocket/updateServerInfo', info));
     this.socket.on('session:update-cookie', cookie => document.cookie = cookie);
     this.socket.on('session:conflict', () => {
       this.socket.disconnect();
@@ -134,6 +155,11 @@ export default {
           icon: 'account'
         })
       }
+    }
+  },
+  methods: {
+    toggleInfo() {
+      this.serverInfoVisible = !this.serverInfoVisible;
     }
   }
 }
@@ -184,6 +210,8 @@ export default {
   height: 100%;
   margin-left: auto;
   margin-right: 20px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .server-status .dot {
@@ -195,5 +223,26 @@ export default {
 
 .server-status .dot.offline {
   background: #f14668;
+}
+
+.server-info {
+  pointer-events: none;
+  position: absolute;
+  min-width: 50px;
+  padding: 10px;
+  top: 64px;
+  right: 48px;
+  color: rgba(255, 255, 255, .6);
+  background-color: rgba(55, 55, 55, 1);
+  box-shadow: -5px 5px 5px -5px rgba(0, 0, 0, .5);
+  font-size: 13px;
+  font-family: sans-serif;
+  border-bottom-left-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.server-info.visible {
+  opacity: 1;
 }
 </style>
