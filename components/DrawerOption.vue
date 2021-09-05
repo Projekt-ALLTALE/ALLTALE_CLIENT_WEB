@@ -100,10 +100,6 @@ export default {
   --rotate-deg: 90deg;
 }
 
-/*.option:last-child {*/
-/*  border-bottom: none;*/
-/*}*/
-
 .option:hover {
   background-color: rgba(0, 0, 0, .2);
 }

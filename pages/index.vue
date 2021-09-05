@@ -23,9 +23,6 @@
       <div class="tile is-parent">
         <div class="tile is-child">
           <WelcomeCard></WelcomeCard>
-          <!--          <div class="tile-card" style="height: fit-content">-->
-          <!--            <InstantMessage></InstantMessage>-->
-          <!--          </div>-->
         </div>
       </div>
     </div>
