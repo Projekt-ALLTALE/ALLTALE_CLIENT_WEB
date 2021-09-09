@@ -80,7 +80,7 @@ export default {
       })
     },
     inputMessage() {
-      this.typing = true;
+      this.typing = this.inputMessage !== '';
     },
     typing(typing) {
       if (typing) this.socket.emit('session:typing-start')
