@@ -249,12 +249,15 @@ h1, p {
 
 @keyframes dot-scale {
   0% {
+    opacity: .6;
     transform: scale(.9);
   }
   50% {
+    opacity: 1;
     transform: scale(1.1);
   }
   100% {
+    opacity: .6;
     transform: scale(.9);
   }
 }
@@ -271,6 +274,7 @@ h1, p {
   background-color: rgba(90, 90, 90, 1);
   backdrop-filter: blur(44px);
   font-size: 14px;
+  font-family: sans-serif;
   overflow: hidden;
   animation: typingShow .6s cubic-bezier(.1, .7, .1, 1);
   transition: all .3s;
