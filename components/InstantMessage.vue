@@ -4,7 +4,7 @@
       <h1>根频道<span class="at-im-online">在线人数：{{ online || 'N/A' }}</span></h1>
     </div>
     <div class="at-im-list-wrapper" ref="im-wrapper">
-      <ul class="at-im-list">
+      <ul class="at-im-list" :style="{'padding-bottom': typing ? '30px' : '0'}">
         <li class="at-im-message"
             :class="{'info': message.info, 'warn': message.warn, 'admin': message.admin, 'myself': message.sender === identity.id}"
             v-for="message in lobbyMessage"
@@ -76,8 +76,8 @@ export default {
   watch: {
     lobbyMessage() {
       this.$nextTick(() => {
-        this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight)
-      })
+        this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight);
+      });
     },
     inputMessage() {
       this.typing = this.inputMessage !== '';
@@ -85,6 +85,12 @@ export default {
     typing(typing) {
       if (typing) this.socket.emit('session:typing-start')
       else this.socket.emit('session:typing-finish')
+      setTimeout(() => {
+        this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight);
+      }, 600);
+      // this.$nextTick(() => {
+      //   this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight);
+      // });
     }
   }
 }
@@ -154,6 +160,7 @@ h1, p {
   margin: 0;
   padding: 0 20px;
   color: #fff;
+  transition: all .6s;
 }
 
 .at-im-message {
