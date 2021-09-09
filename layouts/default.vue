@@ -132,13 +132,8 @@ export default {
     /* Session */
     this.socket.on('session:server-info', info => this.$store.commit('websocket/updateServerInfo', info));
     this.socket.on('session:update-cookie', cookie => document.cookie = cookie);
-    this.socket.on('session:conflict', () => {
-      this.socket.disconnect();
-    });
-    this.socket.on('session:typing', typing => {
-      this.$store.commit('im/updateTypingMember', JSON.parse(typing).members)
-      console.log(this.$store.state.im.typingMember.lobby)
-    })
+    this.socket.on('session:conflict', () => this.socket.disconnect());
+    this.socket.on('session:typing', typing => this.$store.commit('im/updateTypingMember', JSON.parse(typing).members))
 
     /* User / Identity */
     this.socket.on('user:update-info', ev => {
