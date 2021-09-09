@@ -319,7 +319,9 @@ h1, p {
   flex: 4;
   border: none;
   outline: none;
+  border-radius: 0;
   background: transparent;
+  margin: 0;
   padding: 0 16px;
   color: #fff;
   transition: all .1s;
@@ -339,6 +341,7 @@ h1, p {
   flex: 1;
   border: none;
   outline: none;
+  margin: 0;
   background: transparent;
   cursor: pointer;
   color: #fff;
