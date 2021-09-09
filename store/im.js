@@ -21,6 +21,9 @@ export const mutations = {
   putLobbyMessage(state, messageObj) {
     state.message.lobby.push(JSON.parse(messageObj));
   },
+  clearLobbyMessage(state) {
+    state.message.lobby = []
+  },
   updateTypingMember(state, members) {
     state.typingMember.lobby = [...members]
   }

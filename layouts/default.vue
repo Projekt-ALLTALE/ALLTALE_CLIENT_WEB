@@ -118,6 +118,7 @@ export default {
     /* Connection status */
     this.socket.on('connect', ev => {
       this.$store.commit('websocket/updateStatus', true);
+      this.$store.commit('im/clearLobbyMessage');
     });
     this.socket.on('disconnect', ev => {
       this.$store.commit('websocket/updateStatus', false);
@@ -141,9 +142,7 @@ export default {
     });
 
     /* Messaging */
-    this.socket.on('message:lobby', message => {
-      this.$store.commit('im/putLobbyMessage', message);
-    });
+    this.socket.on('message:lobby', message => this.$store.commit('im/putLobbyMessage', message));
   },
   watch: {
     onlineMembers(members) {
