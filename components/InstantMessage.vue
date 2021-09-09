@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class="at-im-form-wrapper">
-      <div class="typing-member-wrapper acrylic" v-if="$store.state.im.typingMember.lobby.length > 0">
+      <div class="typing-member-wrapper" v-if="$store.state.im.typingMember.lobby.length > 0">
         <div class="typing-member">{{ $store.state.im.typingMember.lobby.join(', ') }}</div>
         正在输入中
         <div class="typing-animate">
@@ -233,26 +233,24 @@ h1, p {
 @keyframes typingShow {
   0% {
     opacity: 0;
-    transform: translateY(25px);
   }
   30% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 @keyframes dot-scale {
   0% {
-    transform: scale(.8)
+    transform: scale(.9);
   }
   50% {
-    transform: scale(1);
+    transform: scale(1.1);
   }
   100% {
-    transform: scale(.8);
+    transform: scale(.9);
   }
 }
 
@@ -265,9 +263,13 @@ h1, p {
   top: -25px;
   padding-left: 16px;
   color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(44px);
   font-size: 14px;
   overflow: hidden;
-  animation: typingShow .3s;
+  animation: typingShow .6s cubic-bezier(.1, .7, .1, 1);
+  transition: all .3s;
+  will-change: opacity, transform, background;
 }
 
 .typing-member {
@@ -285,20 +287,20 @@ h1, p {
   background-color: rgba(255, 255, 255, .4);
   width: 5px;
   height: 5px;
-  border-radius: 50px;
+  border-radius: 50%;
   margin: 0 2px;
 }
 
 .typing-dot:nth-child(1) {
-  animation: dot-scale .6s 0s infinite;
+  animation: dot-scale .6s 0s infinite linear;
 }
 
 .typing-dot:nth-child(2) {
-  animation: dot-scale .6s .6s infinite;
+  animation: dot-scale .6s .2s infinite linear;
 }
 
 .typing-dot:nth-child(3) {
-  animation: dot-scale .6s 1.2s infinite;
+  animation: dot-scale .6s .4s infinite linear;
 }
 
 .at-im-form {

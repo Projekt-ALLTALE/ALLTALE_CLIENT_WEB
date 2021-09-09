@@ -4,6 +4,8 @@
   --animation: 300ms;
   --animation-long: 600ms;
 
+  --common-bezier: cubic-bezier(.1, .7, .1, 1);
+
   --color-acrylic: rgba(255, 255, 255, 0.06);
   --color-success: #48c78e;
   --color-error: #f14668;
