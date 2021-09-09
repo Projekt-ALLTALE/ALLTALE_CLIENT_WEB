@@ -29,7 +29,7 @@
         </div>
       </div>
       <form class="at-im-form" @submit="sendMessage">
-        <input placeholder="友善的发言..." v-model="inputMessage" @focus="inputFocus" @blur="inputBlur">
+        <input placeholder="友善的发言..." v-model="inputMessage" @focus="inputFocus" @blur="inputBlur" ref="input">
         <button type="submit"><i class="uit uit-telegram-alt"></i></button>
       </form>
     </div>
@@ -63,6 +63,7 @@ export default {
       event.preventDefault();
       if (this.inputMessage) this.socket.emit('message:send', this.inputMessage);
       this.inputMessage = '';
+      this.$refs['input'].blur();
     },
     parseTimeToShow(timestamp) {
       let datetime = new Date(timestamp);
