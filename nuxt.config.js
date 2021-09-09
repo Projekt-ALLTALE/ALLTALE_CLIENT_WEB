@@ -68,6 +68,6 @@ export default {
   },
 
   publicRuntimeConfig: {
-    alltale_server: process.env.ALLTALE_SERVER || '192.168.59.1:21611'
+    alltale_server: process.env.ALLTALE_SERVER || '192.168.0.106:21611'
   }
 }

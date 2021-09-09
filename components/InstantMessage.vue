@@ -19,8 +19,17 @@
       </ul>
     </div>
     <div class="at-im-form-wrapper">
+      <div class="typing-member-wrapper acrylic" v-if="$store.state.im.typingMember.lobby.length > 0">
+        <div class="typing-member">{{ $store.state.im.typingMember.lobby.join(', ') }}</div>
+        正在输入中
+        <div class="typing-animate">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      </div>
       <form class="at-im-form" @submit="sendMessage">
-        <input placeholder="友善的发言..." v-model="inputMessage">
+        <input placeholder="友善的发言..." v-model="inputMessage" @focus="inputFocus" @blur="inputBlur">
         <button type="submit"><i class="uit uit-telegram-alt"></i></button>
       </form>
     </div>
@@ -40,6 +49,9 @@ export default {
     identity() {
       return this.$store.state.identity.info
     },
+    typingMember() {
+      return this.$store.state.im.typingMember
+    }
   },
   data() {
     return {
@@ -55,6 +67,12 @@ export default {
     parseTimeToShow(timestamp) {
       let datetime = new Date(timestamp);
       return `${datetime.getHours().toString().padStart(2, '0')}:${datetime.getMinutes().toString().padStart(2, '0')}`;
+    },
+    inputFocus() {
+      this.socket.emit('session:typing-start')
+    },
+    inputBlur() {
+      this.socket.emit('session:typing-finish')
     }
   },
   watch: {
@@ -139,7 +157,7 @@ h1, p {
   width: fit-content;
   margin-top: 6px;
   -webkit-animation: MessageFadeInUp .6s ease-out;
-  animation: MessageFadeInUp .6s ease-out;
+  animation: MessageFadeInUp .6s cubic-bezier(.1, .7, .1, 1);
 }
 
 .at-im-message.myself {
@@ -209,7 +227,78 @@ h1, p {
   background: rgba(255, 255, 255, .1);
   -webkit-backdrop-filter: blur(5px) saturate(180%);
   backdrop-filter: blur(5px) saturate(180%);
+  /*overflow: hidden;*/
+}
+
+@keyframes typingShow {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dot-scale {
+  0% {
+    transform: scale(.8)
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(.8);
+  }
+}
+
+.typing-member-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 25px;
+  top: -25px;
+  padding-left: 16px;
+  color: rgba(255, 255, 255, .4);
+  font-size: 14px;
   overflow: hidden;
+  animation: typingShow .3s;
+}
+
+.typing-member {
+  margin-right: 4px;
+}
+
+.typing-animate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.typing-dot {
+  background-color: rgba(255, 255, 255, .4);
+  width: 5px;
+  height: 5px;
+  border-radius: 50px;
+  margin: 0 2px;
+}
+
+.typing-dot:nth-child(1) {
+  animation: dot-scale .6s 0s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation: dot-scale .6s .6s infinite;
+}
+
+.typing-dot:nth-child(3) {
+  animation: dot-scale .6s 1.2s infinite;
 }
 
 .at-im-form {

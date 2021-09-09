@@ -135,6 +135,10 @@ export default {
     this.socket.on('session:conflict', () => {
       this.socket.disconnect();
     });
+    this.socket.on('session:typing', typing => {
+      this.$store.commit('im/updateTypingMember', JSON.parse(typing).members)
+      console.log(this.$store.state.im.typingMember.lobby)
+    })
 
     /* User / Identity */
     this.socket.on('user:update-info', ev => {

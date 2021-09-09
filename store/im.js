@@ -5,6 +5,9 @@ export const state = () => ({
   },
   message: {
     lobby: [],
+  },
+  typingMember: {
+    lobby: [],
   }
 });
 
@@ -17,5 +20,8 @@ export const mutations = {
   },
   putLobbyMessage(state, messageObj) {
     state.message.lobby.push(JSON.parse(messageObj));
+  },
+  updateTypingMember(state, members) {
+    state.typingMember.lobby = [...members]
   }
 }
