@@ -229,7 +229,6 @@ h1, p {
   background: rgba(255, 255, 255, .1);
   -webkit-backdrop-filter: blur(5px) saturate(180%);
   backdrop-filter: blur(5px) saturate(180%);
-  /*overflow: hidden;*/
 }
 
 @keyframes typingShow {
@@ -265,7 +264,7 @@ h1, p {
   top: -25px;
   padding-left: 16px;
   color: rgba(255, 255, 255, .4);
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(90, 90, 90, 1);
   backdrop-filter: blur(44px);
   font-size: 14px;
   overflow: hidden;
