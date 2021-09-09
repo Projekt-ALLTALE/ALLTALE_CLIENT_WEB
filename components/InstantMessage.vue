@@ -29,7 +29,7 @@
         </div>
       </div>
       <form class="at-im-form" @submit="sendMessage">
-        <input placeholder="友善的发言..." v-model="inputMessage" @focus="inputFocus" @blur="inputBlur" ref="input">
+        <input placeholder="友善的发言..." v-model="inputMessage" ref="input">
         <button type="submit"><i class="uit uit-telegram-alt"></i></button>
       </form>
     </div>
@@ -55,7 +55,8 @@ export default {
   },
   data() {
     return {
-      inputMessage: ''
+      inputMessage: '',
+      typing: false
     }
   },
   methods: {
@@ -63,17 +64,13 @@ export default {
       event.preventDefault();
       if (this.inputMessage) this.socket.emit('message:send', this.inputMessage);
       this.inputMessage = '';
-      this.$refs['input'].blur();
+      this.$nextTick(() => {
+        this.typing = false;
+      });
     },
     parseTimeToShow(timestamp) {
       let datetime = new Date(timestamp);
       return `${datetime.getHours().toString().padStart(2, '0')}:${datetime.getMinutes().toString().padStart(2, '0')}`;
-    },
-    inputFocus() {
-      this.socket.emit('session:typing-start')
-    },
-    inputBlur() {
-      this.socket.emit('session:typing-finish')
     }
   },
   watch: {
@@ -81,6 +78,13 @@ export default {
       this.$nextTick(() => {
         this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight)
       })
+    },
+    inputMessage() {
+      this.typing = true;
+    },
+    typing(typing) {
+      if (typing) this.socket.emit('session:typing-start')
+      else this.socket.emit('session:typing-finish')
     }
   }
 }
