@@ -70,6 +70,7 @@ export default {
     },
     parseTimeToShow(timestamp) {
       let datetime = new Date(timestamp);
+      if (datetime.getDate() < new Date().getDate()) return `更早`;
       return `${datetime.getHours().toString().padStart(2, '0')}:${datetime.getMinutes().toString().padStart(2, '0')}`;
     }
   },
@@ -88,9 +89,6 @@ export default {
       setTimeout(() => {
         this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight);
       }, 600);
-      // this.$nextTick(() => {
-      //   this.$refs['im-wrapper'].scroll(0, this.$refs['im-wrapper'].scrollHeight);
-      // });
     }
   }
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt -H 0.0.0.0 -p 21627",
+    "dev": "nuxt -H 127.0.0.1 -p 21627",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
